@@ -2,34 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.0.3] - 2026-02-20
-
-### Changed
-- Rename command
-  - `/chalkyusefeature` (`/fuf`) to  `/chalkytoggle` (`/ft`)
-
-## [0.0.2] - 2026-02-18
-
-### Changed
-- Updated manifest description
-- Updated short commands
-  - `/chalkyusefeature` (`/fuf`) — toggle all features on/off
-  - `/chalkyshowcommand` (`/fsc`) — toggle command visibility in chat  
-
-## [0.0.1] - 2026-02-18
+## [0.0.1] - 2026-02-20
 
 ### Added
-- Chat logging to file with timestamps and channel labels (`[Global]` / `[Local]`)
-- Configurable chat log file path via config and `/chalkysetchatlogpath` command
-- Option to strip TMP formatting tags from the chat log via `CleanChatLogTags` config and `/chalkycleanchatlogtags` command
-- Configurable global and local chat window message limits via `GlobalMessageLimitCount` / `LocalMessageLimitCount` config and `/chalkysetmessagelimit` command
-- Raised notification badge cap from hardcoded 99 to configurable value (default 300, max 999) via `NotificationLimit` config
-- In-game command system with the following commands:
-  - `/chalkyhelp` (`/fh`) — list all commands
-  - `/chalkyusefeature` (`/uff`) — toggle all features on/off
-  - `/chalkyshowcommand` (`/sfc`) — toggle command visibility in chat
-  - `/chalkyusechatlog` (`/fucl`) — toggle chat file logging
-  - `/chalkygetchatlogpath` (`/fgclp`) — print current log file path
-  - `/chalkysetchatlogpath` (`/fsclp`) — set log file path
-  - `/chalkycleanchatlogtags` (`/fcclt`) — toggle TMP tag stripping in log
-  - `/chalkysetmessagelimit` (`/fsml`) — set global/local chat window size
+- Configurable chalk brush size — paints a `size × size` grid block per stroke instead of the default 2×2
+  - Size 1 paints a single grid cell
+  - Size 2 (default) falls through to the original game logic unchanged
+  - Sizes > 2 use the expanded custom painting path
+- Erase mode always uses original game logic regardless of configured size
+- In-game chat command system — commands starting with `/` are intercepted and never sent to other players
+- `/chalkysetsize [size]` (`/css`) — set brush size at runtime; omit argument to reset to default
+- `/chalkytoggle` (`/ct`) — toggle all mod features on/off at runtime
+- `/chalkyshowcommand` (`/fsc`) — toggle whether typed commands are echoed in the chat history
+- `/chalkyhelp` (`/fh`) — list all available commands in chat
+- `/help chalky` (`/h chalky`) — same as above via the shared help command
+- `EnableFeature` config entry (default: `true`) — persisted toggle for mod features
+- `ShowCommand` config entry (default: `false`) — persisted toggle for command echo

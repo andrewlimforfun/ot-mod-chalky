@@ -7,7 +7,7 @@ namespace Chalky.Core.Commands
     {
         public const string CMD = "chalkyhelp";
         public string Name => CMD;
-        public string ShortName => "fh";
+        public string ShortName => "ch";
         public string Description => "Lists all available commands.";
 
         SortedSet<IChatCommand>? commands;

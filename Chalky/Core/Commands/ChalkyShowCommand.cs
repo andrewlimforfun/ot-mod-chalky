@@ -6,9 +6,9 @@ namespace Chalky.Core.Commands
     {
         public const string CMD = "chalkyshowcommand";
         public string Name => CMD;
-        public string ShortName => "fsc";
+        public string ShortName => "cshc";
         public string Description => "Toggle Chalky show/hide Chalky command in chat." +
-            "If enabled, user command such as '/roll' will be shown in chat. Current: " + 
+            "If enabled, user command such as '/chalkysetcolor' will be shown in chat. Current: " + 
             (Plugin.ShowCommand?.Value == true ? "shown" : "hidden");
 
         public void Execute(string[] args)

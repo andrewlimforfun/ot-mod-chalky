@@ -1,62 +1,56 @@
 # Chalky
 
-A BepInEx mod for [On Together](https://store.steampowered.com/app/2688490/On_Together/) that enhances the in-game chat with chat logging, configurable message limits, and in-game utility commands.
+A BepInEx mod for [On Together](https://store.steampowered.com/app/2688490/On_Together/) that enhances the chalkboard drawing experience with configurable brush sizes and in-game chat commands.
 
 ## Features
 
-- **Chat logging text file** — Saves all chat messages to a file with timestamps and channel labels
-- **Configurable chat history length** — Increase how many messages are visible in the global and local chat windows
-- **In-game commands** — Toggle and configure all features without leaving the game
+- **Configurable chalk brush size** — Paint a larger area on the chalkboard in a single stroke. The default game brush covers a 2×2 grid cell block; Chalky lets you scale this up to any integer size.
+- **In-game chat commands** — Control mod behavior on the fly without leaving the game or editing config files. Commands are typed into the chat box and are **never sent** to other players.
+- **Toggle on/off at runtime** — Enable or disable the mod's drawing enhancements instantly without restarting the game.
+- **Show/hide command echo** — Optionally suppress commands from appearing in your chat history.
 
 ## In-Game Commands
 
-Type any command into the in-game chat. Commands start with `/` and are **not sent** to other players. For default values see *Configuration*
+Type any command into the in-game chat. Commands start with `/` and are **not sent** to other players. Each command has a short alias for convenience.
 
-- `/chalkyhelp` (`/fh`) — List all available Chalky commands
-- `/chalkyusefeature` (`/fuf`) — Toggle all Chalky features on/off
-- `/chalkyshowcommand` (`/fsc`) — Toggle whether commands are visible in chat
-- `/chalkyusechatlog` (`/fucl`) — Toggle chat file logging on/off
-- `/chalkygetchatlogpath` (`/fgclp`) — Print the current chat log file path
-- `/chalkysetchatlogpath <path>` (`/fsclp`) — Set a new path for the chat log file
-- `/chalkycleanchatlogtags` (`/fcclt`) — Toggle stripping TMP tags from the chat log
-- `/chalkysetmessagelimit [global|local] <number>` (`/fsml`) — Set the global or local chat window message limit
+- `/chalkyhelp` (`/ch`) — List all available Chalky commands
+- `/help chalky` (`/h chalky`) — Same as above, via the general help command
+- `/chalkytoggle` (`/ct`) — Toggle the mod on or off
+- `/chalkysetsize [size]` (`/css [size]`) — Set the chalk brush size. Omit the argument to reset to default (2)
+- `/chalkyshowcommand` (`/csc`) — Toggle whether your commands are echoed in chat
+
+> **Note:** Size changes are not persistent and reset to the default of `2` on game restart.
 
 ### Examples
 
 ```
-/chalkysetmessagelimit global 100
-/fsml local 50
-/chalkysetchatlogpath C:\Logs\chat.txt
-/chalkyusechatlog
+# Set brush to paint a 5×5 block per stroke
+/css 5
+
+# Reset brush size back to default (2×2)
+/css
+
+# Set brush color to arbitrary hexcode
+/csc #ff0000
+
+# Reset brush color
+/csc
+
+# Turn off Chalky's drawing enhancements entirely
+/ct
+
+# Check which commands are available
+/ch
 ```
 
 ## Configuration
 
-Settings can be changed in the config file or using in-game commands (see below).
-Located in `{BepInExConfigPath}/com.andrewlin.ontogether.chalky.cfg`
+Settings are saved to the BepInEx config file and can also be toggled at runtime via chat commands.
 
-- **General**
-  - `EnableFeature` (default: `true`) — Enable or disable all mod features
-  - `ShowCommand` (default: `false`) — Show commands in chat when used
-  - `EnableChatFileLogging` (default: `true`) — Enable chat log file writing
-  - `ChatLogPath` (default: `BepInEx/on_together_chat_log.txt`) — Path to the chat log file
-  - `CleanChatLogTags` (default: `false`) — Strip TMP color/formatting tags from the chat log
-- **Chat**
-  - `GlobalMessageLimitCount` (default: `50`) — Max messages shown in global chat window (game default: 50)
-  - `LocalMessageLimitCount` (default: `25`) — Max messages shown in local chat window (game default: 25)
+**Location:** `BepInEx/config/com.andrewlin.ontogether.chalky.cfg`
 
-> The notification badge cap (originally hardcoded to 99) is raised to 300 by default and can be changed via `NotificationLimit` in the config.
-
-## Chat Log Format
-
-Each line in the log file looks like:
-
-```
-[2026-02-18 21:34:12] [Global] PlayerName: hello world
-[2026-02-18 21:34:15] [Local] OtherPlayer: hey!
-```
-
-The log file is cleared on each game launch.
+- `EnableFeature` (default: `true`) — Enable or disable all mod features
+- `ShowCommand` (default: `false`) — Show commands in chat when typed
 
 ## Installation
 
