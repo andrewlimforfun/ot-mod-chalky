@@ -1,0 +1,59 @@
+﻿
+using System.IO;
+using BepInEx;
+using BepInEx.Configuration;
+using BepInEx.Logging;
+using Chalky.Core;
+using Chalky.Core.Commands;
+using Chalky.Patches;
+using HarmonyLib;
+using UnityEngine;
+
+
+namespace Chalky
+{
+    [BepInPlugin(Plugin.ModGUID, Plugin.ModName, Plugin.ModVersion)]
+    public class Plugin : BaseUnityPlugin
+    {
+        public static readonly string DefaultChatLogPath = Path.Combine(BepInEx.Paths.BepInExRootPath, "on_together_chat_log.txt");
+        public static int chalkySize = 2;
+        public static Color? chalkyColor = null;
+        public static ConfigEntry<bool>? EnableFeature { get; private set; }
+        public static ConfigEntry<bool>? ShowCommand { get; private set; }
+
+        public static string? PlayerId { get; private set; }
+
+        public static CommandManager? CommandProcessor { get; private set; }
+
+        public const string ModGUID = "com.andrewlin.ontogether.chalky";
+        public const string ModName = "Chalky";
+        public const string ModVersion = BuildInfo.Version;
+
+        // This method is called when the plugin is loaded
+        void Awake()
+        {
+            // This runs once when the game starts
+            Logger.LogInfo($"{ModName} v{ModVersion} is loaded!");
+
+            InitConfig();
+
+            // Apply Harmony patches
+            var harmony = new Harmony(ModGUID);
+            harmony.PatchAll(typeof(TextChannelManagerPatch));
+            harmony.PatchAll(typeof(QuadPainterGPUPatch));
+
+            // Initialize command processor with all commands found via reflection
+            CommandProcessor = new CommandManager();
+        }
+
+
+        void InitConfig()
+        {
+
+            // Initialize config entries
+            EnableFeature = Config.Bind("General", "EnableFeature", true, "Enable or disable the mod feature.");
+            ShowCommand = Config.Bind("General", "ShowCommand", false, "Show the command in chat when used.");
+
+        }
+    }
+}
