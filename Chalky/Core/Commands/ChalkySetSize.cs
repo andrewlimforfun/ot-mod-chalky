@@ -26,6 +26,16 @@ namespace Chalky.Core.Commands
 
             if (int.TryParse(args[0], out int newSize))
             {
+                if (newSize < 1)
+                {
+                    ChatUtils.AddGlobalNotification("Invalid size value. Please provide an integer value of 1 or greater.");
+                    return;
+                }
+                if (newSize == 1)
+                {
+                    ChatUtils.AddGlobalNotification("Sorry! ): Size 1 is not possible atm. Please choose a size of 2 or greater. \nP.S. if you figure out how to do size 1 please let me know!");
+                    return;
+                }
                 Plugin.chalkySize = newSize;
                 ChatUtils.AddGlobalNotification($"Chalk size is now set to {Plugin.chalkySize}.");
             }

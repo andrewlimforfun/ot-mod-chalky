@@ -48,6 +48,12 @@
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>$(LocalOnTogetherManagedPath)\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>$(LocalOnTogetherManagedPath)\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>$(LocalOnTogetherManagedPath)\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>$(LocalOnTogetherManagedPath)\UnityEngine.UI.dll</HintPath>
     </Reference>

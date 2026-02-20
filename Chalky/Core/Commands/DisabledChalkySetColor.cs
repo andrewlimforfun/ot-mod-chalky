@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Chalky.Core.Commands
 {
-    public class ChalkySetColor : IChatCommand
+    public class DisabledChalkySetColor //: IChatCommand
     {
         public const string CMD = "chalkysetcolor";
         public string Name => CMD;

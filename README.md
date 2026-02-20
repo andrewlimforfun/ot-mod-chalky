@@ -2,6 +2,11 @@
 
 A BepInEx mod for [On Together](https://store.steampowered.com/app/2688490/On_Together/) that enhances the chalkboard drawing experience with configurable brush sizes and in-game chat commands.
 
+## WARNING
+
+- Chalk enlargement only!
+- Chalk size can't be smaller than the default 2 sorry! I use RPC call and that has minimum size 2x2 as determined by the game API.
+
 ## Features
 
 - **Configurable chalk brush size** — Paint a larger area on the chalkboard in a single stroke. The default game brush covers a 2×2 grid cell block; Chalky lets you scale this up to any integer size.
@@ -29,12 +34,6 @@ Type any command into the in-game chat. Commands start with `/` and are **not se
 
 # Reset brush size back to default (2×2)
 /css
-
-# Set brush color to arbitrary hexcode
-/csc #ff0000
-
-# Reset brush color
-/csc
 
 # Turn off Chalky's drawing enhancements entirely
 /ct
