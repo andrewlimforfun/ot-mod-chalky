@@ -17,7 +17,7 @@ namespace Chalky.Patches
     {
         static ManualLogSource Logger = BepInEx.Logging.Logger.CreateLogSource("Chalky.QuadPainterGPUPatch");
 
-        // cached once at startup — avoids repeated reflection lookups per paint call
+        // cached once at startup - avoids repeated reflection lookups per paint call
         private static readonly System.Reflection.FieldInfo _pixelsField =
             typeof(QuadPainterGPU).GetField("_pixelsToUpdate", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
 
@@ -28,7 +28,7 @@ namespace Chalky.Patches
             typeof(QuadPainterGPU).GetMethod("FillTheBlanks", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
 
         
-        // Update prefix — for size > 2 (non-erase), send multiple offset
+        // Update prefix - for size > 2 (non-erase), send multiple offset
         // FillTheBlanksRPC calls so ALL clients (modded or not) see the
         // expanded brush via tiled 2×2 blocks.
         
@@ -48,7 +48,7 @@ namespace Chalky.Patches
                 (!MonoSingleton<DrawingManager>.I.IsHaveChalk() && !MonoSingleton<DrawingManager>.I.IsEraser))
                 return false;
 
-            // erasing — let original handle it unchanged
+            // erasing - let original handle it unchanged
             if (MonoSingleton<DrawingManager>.I.IsEraser)
                 return true;
 
@@ -87,7 +87,7 @@ namespace Chalky.Patches
                         // broadcast to all other clients (uses existing network protocol)
                         __instance.FillTheBlanksRPC(offsetUV, offsetPrevUV, colIndex, false, false);
 
-                        // paint locally (FillTheBlanks is private → invoke via reflection)
+                        // paint locally (FillTheBlanks is private => invoke via reflection)
                         _fillTheBlanksMethod.Invoke(__instance,
                             new object[] { offsetUV, offsetPrevUV, colIndex, false, false, true });
                     }

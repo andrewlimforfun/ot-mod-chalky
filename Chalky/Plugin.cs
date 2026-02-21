@@ -20,6 +20,10 @@ namespace Chalky
         public static Color? chalkyColor = null;
         public static ConfigEntry<bool>? EnableFeature { get; private set; }
         public static ConfigEntry<bool>? ShowCommand { get; private set; }
+        public static ConfigEntry<string>? BoardSaveDirectory { get; private set; }
+
+        /// <summary>Resolved absolute path to the board save directory.</summary>
+        public static string SaveDir { get; private set; } = "";
 
         public static string? PlayerId { get; private set; }
 
@@ -49,11 +53,27 @@ namespace Chalky
 
         void InitConfig()
         {
-
             // Initialize config entries
             EnableFeature = Config.Bind("General", "EnableFeature", true, "Enable or disable the mod feature.");
             ShowCommand = Config.Bind("General", "ShowCommand", false, "Show the command in chat when used.");
+            BoardSaveDirectory = Config.Bind(
+                "Boards",
+                "BoardSaveDirectory",
+                "~/on-together/chalkboard",
+                "Directory where chalkboard saves are stored. '~' expands to your home folder.");
 
+            SaveDir = ResolvePath(BoardSaveDirectory.Value);
+            Directory.CreateDirectory(SaveDir);
+            Logger.LogInfo($"Board save directory: {SaveDir}");
+        }
+
+        /// <summary>Expands '~' to the user's home folder and returns the full path.</summary>
+        public static string ResolvePath(string path)
+        {
+            if (path.StartsWith("~"))
+                path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.UserProfile)
+                       + path.Substring(1);
+            return Path.GetFullPath(path);
         }
     }
 }

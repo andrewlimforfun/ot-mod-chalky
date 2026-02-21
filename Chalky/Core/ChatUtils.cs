@@ -10,7 +10,7 @@ public static class ChatUtils
 {
     public static void AddGlobalNotification(string text)
     {
-        NetworkSingleton<TextChannelManager>.I.AddNotification(text);
+        NetworkSingleton<TextChannelManager>.I.AddNotification($"[{Plugin.ModName}] {text}");
     }
 
     public static string GetUserName()

@@ -9,7 +9,7 @@
     <RootNamespace>Chalky</RootNamespace>
     <Description>Chalky: Some painting support for the artsy folks!</Description>
     <Website>https://github.com/andrewlimforfun/ot-mod-chalky</Website>
-    <Version>0.0.2</Version>
+    <Version>0.0.3</Version>
     <TargetFramework>netstandard2.1</TargetFramework>
     <!-- only for net10 <ImplicitUsings>enable</ImplicitUsings> -->
     <Nullable>enable</Nullable>
@@ -62,6 +62,13 @@
     </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>$(LocalOnTogetherManagedPath)\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <!-- Unity 2022+ ships Newtonsoft.Json via com.unity.nuget.newtonsoft-json -->
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>$(LocalOnTogetherManagedPath)\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>$(LocalOnTogetherManagedPath)\UnityEngine.ImageConversionModule.dll</HintPath>
     </Reference>
   </ItemGroup>
 
