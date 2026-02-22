@@ -23,7 +23,6 @@ A BepInEx mod for [On Together](https://store.steampowered.com/app/2688490/On_To
 Type any command into the in-game chat. Commands start with `/` and are **not sent** to other players. Each command has a short alias for convenience.
 
 - `/chalkyhelp` (`/ch`) - List all available Chalky commands
-- `/help chalky` (`/h chalky`) - Same as above, via the general help command
 - `/chalkytoggle` (`/ct`) - Toggle the mod on or off
 - `/chalkysetsize [size]` (`/css [size]`) - Set the chalk brush size. Omit to reset to default (2)
 - `/chalkyshowcommand` (`/csc`) - Toggle whether your commands are echoed in chat

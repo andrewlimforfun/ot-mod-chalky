@@ -7,9 +7,9 @@
     <AssemblyName>AndrewLin.Chalky</AssemblyName>
     <PackageName>Chalky</PackageName>
     <RootNamespace>Chalky</RootNamespace>
-    <Description>Chalky: Some painting support for the artsy folks!</Description>
+    <Description>Chalky: Enlarge chalk and save/load chalkboard. Use /chalkyhelp for commands.</Description>
     <Website>https://github.com/andrewlimforfun/ot-mod-chalky</Website>
-    <Version>0.0.3</Version>
+    <Version>0.0.4</Version>
     <TargetFramework>netstandard2.1</TargetFramework>
     <!-- only for net10 <ImplicitUsings>enable</ImplicitUsings> -->
     <Nullable>enable</Nullable>

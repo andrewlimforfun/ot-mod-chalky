@@ -9,9 +9,9 @@ namespace Chalky.Core
 {
     public class CommandManager
     {
-        private readonly ManualLogSource log = BepInEx.Logging.Logger.CreateLogSource(Plugin.ModName);
+        private readonly ManualLogSource _log = BepInEx.Logging.Logger.CreateLogSource(Plugin.ModName);
 
-        private readonly Dictionary<string, IChatCommand> commands;
+        private readonly Dictionary<string, IChatCommand> _commands;
 
         public CommandManager()
         {
@@ -22,20 +22,20 @@ namespace Chalky.Core
                          && !t.IsAbstract);
 
             // Load all injected commands into a fast-lookup dictionary
-            this.commands = new Dictionary<string, IChatCommand>();
+            this._commands = new Dictionary<string, IChatCommand>();
             foreach (var cmdType in commandTypes)
             {
                 var cmd = Activator.CreateInstance(cmdType) as IChatCommand;
                 if (cmd != null)
                 {
-                    this.commands[cmd.Name] = cmd;
-                    this.commands[cmd.ShortName] = cmd;
-                    log.LogInfo($"Loaded /{cmd.Name} (/{cmd.ShortName})");
+                    this._commands[cmd.Name] = cmd;
+                    this._commands[cmd.ShortName] = cmd;
+                    _log.LogInfo($"Loaded /{cmd.Name} (/{cmd.ShortName})");
                 }
             }
 
             // Initialize the help command with the full list of commands for dynamic help text
-            InitializeHelpCommand(this.commands);
+            InitializeHelpCommand(this._commands);
         }
 
         private static void InitializeHelpCommand(Dictionary<string, IChatCommand> commands)
@@ -43,10 +43,6 @@ namespace Chalky.Core
             if (commands.TryGetValue(ChalkyHelpCommand.CMD, out IChatCommand? helpCmd))
             {
                 (helpCmd as ChalkyHelpCommand)?.Initialize(commands.Values);
-            }
-            if (commands.TryGetValue(HelpCommand.CMD, out IChatCommand? helpCmd2))
-            {
-                (helpCmd2 as HelpCommand)?.Initialize(commands.Values);
             }
         }
 
@@ -59,8 +55,9 @@ namespace Chalky.Core
             }
 
             // Look up command by name and execute if found
-            if (commands.TryGetValue(commandArgs.Name, out IChatCommand? command))
+            if (_commands.TryGetValue(commandArgs.Name, out IChatCommand? command))
             {
+                _log.LogInfo($"Executing command: {commandArgs}");
                 try
                 {
                     command.Execute(commandArgs.Args);

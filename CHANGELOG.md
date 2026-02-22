@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.0.4] - 2026-02-22
+
+### Removed
+- `/help chalky` (`/h chalky`) - use `/chalkyhelp` (`/ch`) instead
+
 ## [0.0.3] - 2026-02-21
 
 ### Added

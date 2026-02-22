@@ -44,12 +44,8 @@ public static class ChatUtils
         // Removes focus from any currently selected UI element        
         EventSystem.current.SetSelectedGameObject(null);
 
-        // special exception for /help since this command is used by other plugins
-        if (MonoSingleton<UIManager>.I.MessageInput.text != "/help")
-        {
-            // Clears the text input field
-            MonoSingleton<UIManager>.I.MessageInput.text = "";
-        }
+        // Clears the text input field
+        MonoSingleton<UIManager>.I.MessageInput.text = "";
     }
 
     private static readonly Regex CommonTMPTagRegex = new Regex(
