@@ -1,3 +1,10 @@
 ﻿<Solution>
-  <Project Path="Chalky/Chalky.csproj" />
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <BuildType Name="Debug" />
+    <BuildType Name="Release" />
+    <BuildType Name="Install" /> 
+  </Configurations>
+  <Project Name="Chalky" Path="Chalky/Chalky.csproj" />
 </Solution>

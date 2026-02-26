@@ -88,7 +88,7 @@
   </Target>
 
   <!-- Install mod locally for testing -->
-  <Target Name="Install" AfterTargets="Build" Condition="'$(Configuration)' == 'Debug'">
+  <Target Name="Install" AfterTargets="Build" Condition="'$(Configuration)' == 'Install'">
     <!-- Have to set verbosity to -v detailed anyway to see the message -->
     <Message Importance="high" Text="Copying [$(TargetFileName)] to: $(LocalInstallPath)" />
     <Error Condition="'$(LocalBepInExPluginPath)' == ''" Text="LocalBepInExPluginPath is empty! Check your PropertyGroup." />
@@ -97,7 +97,7 @@
     <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(LocalInstallPath)" />
   </Target>
 
-  <Target Name="CleanInstall" AfterTargets="Clean">
+  <Target Name="CleanInstall" AfterTargets="Clean" Condition="'$(Configuration)' == 'Install'">
     <!-- Have to set verbosity to -v detailed anyway to see the message -->
     <Message Importance="high" Text="Deleting [$(TargetFileName)] from: $(LocalInstallPath)" />
     <RemoveDir Directories="$(LocalInstallPath)" />
